@@ -26,7 +26,7 @@
             xhr.onload = () => {
                 if(xhr.status === 200) {
                     strs = xhr.responseText.split('\n\r\n');
-                    console.log(strs);
+                    console.log("a");
                     for(let i = 0; i < strs.length; i++){
                         if(strs[i]=='\r'||strs[i]==''){
                             strs.splice(i,1);
