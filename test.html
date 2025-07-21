@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+        <style>
+            .reggae-one-regular {
+                font-family: "Reggae One", system-ui;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+        </style>
+    </head>
+    <body id="parent" width="100%">
+        <h3>イジンデン デッキコストルール</h3>
+        <p>  産業技術高専荒川キャンパス内で適用されるハウスルール「デッキコストルール」の説明ページです。</p>
+        <p>手作り感半端ないけどhtml勉強し始めて1日経ってないから許して</p>
+
+        <script>
+            const xhr = new XMLHttpRequest();
+            let strs = [];
+            xhr.open('GET','data.txt',true);
+            xhr.onload = () => {
+                if(xhr.status === 200) {
+                    strs = xhr.responseText.split('\n\r\n');
+
+                    for(let i = 0; i < strs.length; i++){
+                        if(strs[i]=='\r'||strs[i]==''){
+                            strs.splice(i,1);
+                        }
+                    }
+
+                    for(i = 0; i< strs.length; i++){
+                        strs[i] = strs[i].split('\r\n');
+                    }
+
+                    for(i = 0; i< strs.length; i++){
+                        for(let j = 0; j < strs[i].length; j++){
+                            strs[i][j] = strs[i][j].replace('\r','').split(' ');
+                        }
+                    }
+
+                    console.log(strs);
+                    const MAIN = document.getElementById('parent');
+                    const TABLE = document.createElement('table');
+                    const THEAD = document.createElement('thead');
+                    const TBODY = document.createElement('tbody');
+                    const TH_R = document.createElement('tr');
+                    const TH_LIST = [document.createElement('th'),document.createElement('th'),document.createElement('th')];
+                    const TH_TEXT = ['色','カード名','コスト'];
+                    const COLORS_J = ['赤','青','緑','黄','紫'];
+                    const COLORS_E = ['red','blue','green','yellow','purple'];
+
+                    TABLE.width = '70%';
+                    TABLE.align = 'center';
+
+                    for(i = 0; i < 3; i++){
+                        TH_LIST[i].innerHTML = TH_TEXT[i];
+                        TH_LIST[i].className = 'reggae-one-regular';
+                        TH_LIST[i].align = 'left';
+                        TH_LIST[i].scope = 'col';
+                        THEAD.appendChild(TH_LIST[i]);
+                    }
+
+                    TH_LIST[0].width = '20%';
+                    TH_LIST[1].width = '70%';
+                    TH_LIST[2].width = '10%';
+
+                    for(i = 0; i < strs.length; i++){
+                        const _pcolor = document.createElement('tr');
+                        const _color = document.createElement('td');
+                        _color.scope = 'row';
+                        _color.rowSpan = String(strs[i].length+1);
+                        _color.align = 'center';
+                        _color.innerHTML = COLORS_J[i];
+                        _color.className = 'reggae-one-regular';
+                        _color.bgColor = COLORS_E[i];
+                        _pcolor.appendChild(_color);
+                        TBODY.appendChild(_pcolor);
+                        for(j = 0; j < strs[i].length; j++){
+                            const _TR = document.createElement('tr');
+                            for(let k = 0; k < strs[i][j].length; k++){
+                                const _cell = document.createElement('td');
+                                _cell.innerHTML = strs[i][j][k];
+                                _cell.className = 'reggae-one-regular';
+                                _TR.appendChild(_cell);
+                            }
+                            TBODY.appendChild(_TR);
+                        }
+
+                    }
+                    TABLE.border = "5px";
+                    TABLE.appendChild(THEAD);
+                    TABLE.appendChild(TBODY);
+                    MAIN.appendChild(TABLE);
+
+                }
+            };
+
+            xhr.send()
+
+        </script>
+    </body>
+</html>
