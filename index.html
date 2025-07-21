@@ -25,8 +25,7 @@
             xhr.open('GET','data.txt',true);
             xhr.onload = () => {
                 if(xhr.status === 200) {
-                    strs = xhr.responseText.split('\n\r\n');
-                    console.log("a");
+                    strs = xhr.responseText.split('\n\n');
                     for(let i = 0; i < strs.length; i++){
                         if(strs[i]=='\r'||strs[i]==''){
                             strs.splice(i,1);
@@ -34,7 +33,7 @@
                     }
 
                     for(i = 0; i< strs.length; i++){
-                        strs[i] = strs[i].split('\r\n');
+                        strs[i] = strs[i].split('\n');
                     }
 
                     for(i = 0; i< strs.length; i++){
