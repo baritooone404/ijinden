@@ -49,14 +49,14 @@
                     const TBODY = document.createElement('tbody');
                     const TH_R = document.createElement('tr');
                     const TH_LIST = [document.createElement('th'),document.createElement('th'),document.createElement('th')];
-                    const TH_TEXT = ['色','カード名','コスト'];
+                    const TH_TEXT = ['カード名','コスト'];
                     const COLORS_J = ['赤','青','緑','黄','紫'];
-                    const COLORS_E = ['red','blue','green','yellow','purple'];
+                    const COLORS_E = ['#f00','#00f','#0c0','#fd0','#b0b'];
 
                     TABLE.width = '70%';
                     TABLE.align = 'center';
 
-                    for(i = 0; i < 3; i++){
+                    for(i = 0; i < 2; i++){
                         TH_LIST[i].innerHTML = TH_TEXT[i];
                         TH_LIST[i].className = 'reggae-one-regular';
                         TH_LIST[i].align = 'left';
@@ -64,27 +64,17 @@
                         THEAD.appendChild(TH_LIST[i]);
                     }
 
-                    TH_LIST[0].width = '20%';
-                    TH_LIST[1].width = '70%';
-                    TH_LIST[2].width = '10%';
+                    TH_LIST[0].width = '80%';
+                    TH_LIST[1].width = '20%';
 
                     for(i = 0; i < strs.length; i++){
-                        const _pcolor = document.createElement('tr');
-                        const _color = document.createElement('td');
-                        _color.scope = 'row';
-                        _color.rowSpan = String(strs[i].length+1);
-                        _color.align = 'center';
-                        _color.innerHTML = COLORS_J[i];
-                        _color.className = 'reggae-one-regular';
-                        _color.bgColor = 'light' + COLORS_E[i];
-                        _pcolor.appendChild(_color);
-                        TBODY.appendChild(_pcolor);
                         for(j = 0; j < strs[i].length; j++){
                             const _TR = document.createElement('tr');
                             for(let k = 0; k < strs[i][j].length; k++){
                                 const _cell = document.createElement('td');
                                 _cell.innerHTML = strs[i][j][k];
                                 _cell.className = 'reggae-one-regular';
+                                _cell.bgColor = COLORS_E[i];
                                 _TR.appendChild(_cell);
                             }
                             TBODY.appendChild(_TR);
