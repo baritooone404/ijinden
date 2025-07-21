@@ -25,6 +25,7 @@
             xhr.open('GET','data.txt',true);
             xhr.onload = () => {
                 if(xhr.status === 200) {
+                    console.log(xhr.responseText);
                     strs = xhr.responseText.split('\n\r\n');
 
                     for(let i = 0; i < strs.length; i++){
