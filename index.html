@@ -71,11 +71,13 @@
                         for(j = 0; j < strs[i].length; j++){
                             const _TR = document.createElement('tr');
                             for(let k = 0; k < strs[i][j].length; k++){
-                                const _cell = document.createElement('td');
-                                _cell.innerHTML = strs[i][j][k];
-                                _cell.className = 'reggae-one-regular';
-                                _cell.style = 'background-color:rgba(' + COLORS_E[i] + ',0.5);';
-                                _TR.appendChild(_cell);
+                                if(strs[i][j][k]!=''){
+                                    const _cell = document.createElement('td');
+                                    _cell.innerHTML = strs[i][j][k];
+                                    _cell.className = 'reggae-one-regular';
+                                    _cell.style = 'background-color:rgba(' + COLORS_E[i] + ',0.5);';
+                                    _TR.appendChild(_cell);
+                                }
                             }
                             TBODY.appendChild(_TR);
                         }
