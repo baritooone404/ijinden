@@ -51,7 +51,7 @@
                     const TH_LIST = [document.createElement('th'),document.createElement('th'),document.createElement('th')];
                     const TH_TEXT = ['カード名','コスト'];
                     const COLORS_J = ['赤','青','緑','黄','紫'];
-                    const COLORS_E = ['#f00','#00f','#0c0','#fd0','#b0b'];
+                    const COLORS_E = ['255,0,0,0.6','0,0,255,0.6','0,204,0,0.6','255,221,0,0.6','187,0,187,0.6'];
 
                     TABLE.width = '70%';
                     TABLE.align = 'center';
@@ -74,7 +74,7 @@
                                 const _cell = document.createElement('td');
                                 _cell.innerHTML = strs[i][j][k];
                                 _cell.className = 'reggae-one-regular';
-                                _cell.bgColor = COLORS_E[i];
+                                _cell.style = 'background-color:rgba(' + COLORS_E[i] + ');';
                                 _TR.appendChild(_cell);
                             }
                             TBODY.appendChild(_TR);
